@@ -1,4 +1,8 @@
 node {
+  stage('checkout') {
+        checkout scm
+  }
+  
   parameters {
     string(name: 'REPONAME', defaultValue: 'example/nginx', description: 'AWS ECR Repository Name')
     string(name: 'ECR', defaultValue: '447895454160.dkr.ecr.us-east-1.amazonaws.com/example/nginx', description: 'AWS ECR Registry URI')
