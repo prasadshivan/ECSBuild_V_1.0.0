@@ -12,12 +12,15 @@ node {
     string(name: 'Version', defaultValue: 'New', description: 'AWS ECS TD status')
   } */
   
-    
+    /* create a revision for existing task defenition */
     stage('Stage:TD') {
 
         sh 'aws ecs register-task-definition --cli-input-json file://task_definition.json' 
       }
     
+  /* Update the existing service if the image is new and task definition is an existing one. 
+  Create a a new service if the task defenition is new. */ 
+  
    stage('Stage:Service')
        if (params.Version == 'New')
        {  
