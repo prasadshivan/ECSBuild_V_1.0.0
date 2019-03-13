@@ -3,6 +3,14 @@ node {
         checkout scm
   }
   
+  stage('New TD')
+      if (param.TDStatus == 'New')
+          {
+            sh 'aws ecs register-task-definition --cli-input-json file://task_definition.json'
+          }
+          else
+          {
+
     /* create a revision for existing task defenition */
     stage('Stage:TD') {
 
@@ -22,9 +30,5 @@ node {
        sh 'aws ecs create-service --cluster DevopsTest --service-name ecs-simple-service2 --task-definition ExampleTask --desired-count 1'
        }
 }
+}
   
-
-
-
-
-
